@@ -1,6 +1,8 @@
 import { cn } from '@/lib/utils'
 import { Inter } from 'next/font/google'
 import './globals.css'
+import Navbar from '@/components/Navbar'
+
 
 // import 'react-loading-skeleton/dist/skeleton.css'
 // import 'simplebar-react/dist/simplebar.min.css'
@@ -22,11 +24,9 @@ export default function RootLayout({
             'min-h-screen font-sans antialiased grainy',
             inter.className
           )}>
-          {/* <Toaster /> */}
-          {/* <Navbar /> */}
+        <Navbar/>
           {children}
         </body>
-      {/* </Providers> */}
     </html>
   )
 }
