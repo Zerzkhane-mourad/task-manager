@@ -2,8 +2,9 @@ import React from 'react'
 import MaxWidthWrapper from './MaxWidthWrapper'
 import Link from 'next/link'
 import { buttonVariants } from '@/components/ui/button'
-import { LoginLink, RegisterLink, getKindeServerSession } from '@kinde-oss/kinde-auth-nextjs/server'
 import { ArrowRight } from 'lucide-react'
+import { SignInButton, UserButton } from '@clerk/nextjs'
+import { SignedIn, SignedOut } from '@clerk/nextjs/app-beta/client'
 
 function Navbar() {
     return (
@@ -18,27 +19,27 @@ function Navbar() {
                     <div className='hidden items-center space-x-4 sm:flex'>
                         <>
                             <Link
-                                href='/pricing'
+                                href='/dashboard'
                                 className={buttonVariants({
                                     variant: 'ghost',
                                     size: 'sm',
                                 })}>
-                                Pricing
-                            </Link>
-                            <LoginLink
-                                className={buttonVariants({
-                                    variant: 'ghost',
-                                    size: 'sm',
-                                })}>
-                                Sign in
-                            </LoginLink>
-                            <RegisterLink
-                                className={buttonVariants({
-                                    size: 'sm',
-                                })}>
-                                Get started{' '}
+                                 Get started{''}
                                 <ArrowRight className='ml-1.5 h-5 w-5' />
-                            </RegisterLink>
+                            </Link>
+                            <SignedOut>
+                                <SignInButton mode='modal'>
+                                    <button className={buttonVariants({
+                                        variant: 'ghost',
+                                        size: 'sm',
+                                    })}>
+                                        Sign in
+                                    </button>
+                                </SignInButton>
+                            </SignedOut>
+                            <SignedIn>
+                                <UserButton />
+                            </SignedIn>
                         </>
                     </div>
                 </div>

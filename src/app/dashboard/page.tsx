@@ -1,16 +1,24 @@
-import { getKindeServerSession } from '@kinde-oss/kinde-auth-nextjs/server'
-import { redirect } from 'next/navigation'
+'use client'
+
+import { useUser } from '@clerk/nextjs'
+import { useRouter } from 'next/navigation'
+
+
 
 const Page = () => {
+  const { isLoaded, isSignedIn, user } = useUser()
+  const router = useRouter()
 
-    const { getUser } = getKindeServerSession()
-    const user = getUser()
-
-
-    if(!user || !user.id) redirect('/dashboard')
+  if (isLoaded && !isSignedIn) {
+    router.push('/sign-in?redirectUrl=/dashboard')
+  }
 
   return (
-    <div>{user.email}</div>
+    <section className='py-24'>
+      <div className='container'>
+        <h1 className='text-3xl font-bold'>{user?.id}</h1>
+      </div>
+    </section>
   )
 }
 

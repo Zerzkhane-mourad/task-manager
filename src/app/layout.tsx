@@ -2,10 +2,8 @@ import { cn } from '@/lib/utils'
 import { Inter } from 'next/font/google'
 import './globals.css'
 import Navbar from '@/components/Navbar'
+import { ClerkProvider } from '@clerk/nextjs'
 
-
-// import 'react-loading-skeleton/dist/skeleton.css'
-// import 'simplebar-react/dist/simplebar.min.css'
 
 
 const inter = Inter({ subsets: ['latin'] })
@@ -17,16 +15,21 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
+
     <html lang='en' className='light'>
       {/* <Providers> */}
+     
         <body
           className={cn(
             'min-h-screen font-sans antialiased grainy',
             inter.className
           )}>
-        <Navbar/>
+             <ClerkProvider>
+          <Navbar />
           {children}
+          </ClerkProvider>
         </body>
     </html>
+
   )
 }
