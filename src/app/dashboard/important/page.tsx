@@ -4,10 +4,10 @@ function page() {
   return (
     <div className='text-gray-700  ml-9 pt-5'>
 
-    <h1><b>All Tasks</b></h1>
+      <h1><b>Important</b></h1>
 
 
-  </div>
+    </div>
   )
 }
 
